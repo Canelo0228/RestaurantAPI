@@ -1,4 +1,4 @@
-﻿using RestaurantAPI.Core.Application.Enums;
+﻿using AutoMapper.Configuration.Annotations;
 
 namespace RestaurantAPI.Core.Application.Dtos.Table
 {
@@ -6,7 +6,6 @@ namespace RestaurantAPI.Core.Application.Dtos.Table
     {
         public int Capability { get; set; }
         public string Description { get; set; }
-        public TableStatus Status { get; set; } = 0;
     }
 
 }

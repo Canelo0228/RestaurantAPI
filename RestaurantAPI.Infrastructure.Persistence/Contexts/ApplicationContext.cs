@@ -6,10 +6,7 @@ namespace RestaurantAPI.Infrastructure.Persistence.Contexts
 {
     public class ApplicationContext : DbContext
     {
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
-        {
-
-        }
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
@@ -29,42 +26,84 @@ namespace RestaurantAPI.Infrastructure.Persistence.Contexts
                         break;
                 }
             }
-
             return base.SaveChangesAsync(cancellationToken);
         }
 
         public DbSet<Dish> Dishes { get; set; }
-        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<DishCategory> DishCategories { get; set; }
         public DbSet<DishIngredient> DishIngredients { get; set; }
+        public DbSet<DishOrder> DishOrders { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderStatus> OrdersStatus { get; set; }
         public DbSet<Table> Tables {  get; set; }
+        public DbSet<TableStatus> TablesStatus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.Table)
-                .WithMany(t => t.Orders)
-                .HasForeignKey(o => o.TableId);
-            modelBuilder.Entity<Order>()
-                .Property(o => o.SubTotal)
-                .HasPrecision(10, 2);
+            #region keys
+            modelBuilder.Entity<Dish>().HasKey(a => a.Id);
+            modelBuilder.Entity<DishCategory>().HasKey(a => a.Id);
+            modelBuilder.Entity<DishIngredient>().HasKey(a => new { a.DishId, a.IngredientId });
+            modelBuilder.Entity<Ingredient>().HasKey(a => a.Id);
+            modelBuilder.Entity<Order>().HasKey(a => a.Id);
+            modelBuilder.Entity<DishOrder>().HasKey(a => new { a.DishId, a.OrderId });
+            modelBuilder.Entity<OrderStatus>().HasKey(a => a.Id);
+            modelBuilder.Entity<Table>().HasKey(a => a.Id);
+            modelBuilder.Entity<TableStatus>().HasKey(a => a.Id);
+            #endregion
+
+            #region relationships
 
             modelBuilder.Entity<Dish>()
-                .Property(o => o.Price)
-                .HasPrecision(10, 2);
-            
-            modelBuilder.Entity<DishIngredient>()
-                .HasKey(di => new { di.DishId, di.IngredientId });
-            modelBuilder.Entity<DishIngredient>()
-                .HasOne(di => di.Dish)
-                .WithMany(d => d.DishIngredients)
-                .HasForeignKey(di => di.DishId);
-            modelBuilder.Entity<DishIngredient>()
-                .HasOne(di => di.Ingredient)
-                .WithMany(i => i.DishIngredients)
-                .HasForeignKey(di => di.IngredientId);
+                .HasOne(a => a.DishCategory)
+                .WithMany(a => a.Dishes)
+                .HasForeignKey(a => a.DishCategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Order>()
+                .HasOne(a => a.Table)
+                .WithMany(a => a.Orders)
+                .HasForeignKey(a => a.TableId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(a => a.OrderStatus)
+                .WithMany(a => a.Orders)
+                .HasForeignKey(a => a.OrderStatusId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Table>()
+                .HasOne(a => a.TableStatus)
+                .WithMany(a => a.Tables)
+                .HasForeignKey(a => a.StatusId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DishOrder>()
+                .HasOne(a => a.Dish)
+                .WithMany(a => a.DishOrders)
+                .HasForeignKey(a => a.DishId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DishOrder>()
+                .HasOne(a => a.Order)
+                .WithMany(a => a.DishOrders)
+                .HasForeignKey(a => a.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DishIngredient>()
+                .HasOne(a => a.Ingredient)
+                .WithMany(a => a.DishIngredients)
+                .HasForeignKey(a => a.IngredientId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DishIngredient>()
+               .HasOne(a => a.Dish)
+               .WithMany(a => a.DishIngredients)
+               .HasForeignKey(a => a.DishId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            #endregion
         }
-
     }
 }

@@ -5,8 +5,7 @@ using System.Linq.Expressions;
 
 namespace RestaurantAPI.Infrastructure.Persistence.Repositories
 {
-    public class GenericRepository<Entity> : IGenericRepository<Entity>
-        where Entity : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly ApplicationContext _context;
 
@@ -15,51 +14,63 @@ namespace RestaurantAPI.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public virtual async Task AddAsync(Entity entity)
+        public virtual async Task<List<T>> GetAllAsync()
         {
-            await _context.Set<Entity>().AddAsync(entity);
-            await _context.SaveChangesAsync();
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
-        public virtual async Task UpdateAsync(Entity entity, int id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
-            Entity entry = await _context.Set<Entity>().FindAsync(id);
-            _context.Entry(entry).CurrentValues.SetValues(entity);
-            await _context.SaveChangesAsync();
+            return await _context.Set<T>().FindAsync(id);
         }
-        public virtual async Task DeleteAsync(Entity entity)
-        {
-            _context.Set<Entity>().Remove(entity);
-            await _context.SaveChangesAsync();
-        }
-        public virtual async Task<Entity> GetByIdAsync(int id)
-        {
-            return await _context.Set<Entity>().FindAsync(id);
-        }
-        public virtual async Task<List<Entity>> GetAllAsync()
-        {
-            return await _context.Set<Entity>().ToListAsync();
-        }
-        public virtual async Task<List<Entity>> GetAllAsync(Expression<Func<Entity, bool>> filter)
+        public virtual async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {
             if (filter != null)
             {
-                return await _context.Set<Entity>().Where(filter).ToListAsync();
+                return await _context.Set<T>().Where(filter).ToListAsync();
             }
             else
             {
                 return await GetAllAsync();
             }
         }
-        public virtual async Task<List<Entity>> GetAllWithIncludesAsync(List<string> properties)
+        public virtual async Task<List<T>> GetAllWithIncludesAsync(List<Expression<Func<T, object>>> includeProperties)
         {
-            IQueryable<Entity> query = _context.Set<Entity>().AsQueryable();
+            IQueryable<T> query = _context.Set<T>().AsQueryable();
 
-            foreach(var property in properties)
+            foreach (var includeProperty in includeProperties)
             {
-                query = query.Include(property);
+                query = query.Include(includeProperty);
             }
 
             return await query.ToListAsync();
+        }
+        public virtual async Task AddAsync(T entity)
+        {
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+        }
+        public virtual async Task UpdateAsync(T entity, int id)
+        {
+            T entry = await _context.Set<T>().FindAsync(id);
+
+            if (entry != null)
+            {
+                _context.Entry(entry).CurrentValues.SetValues(entity);
+                var primaryKey = _context.Model.FindEntityType(typeof(T))
+                                        .FindPrimaryKey().Properties
+                                        .Select(p => p.Name).FirstOrDefault();
+                if (primaryKey != null)
+                {
+                    _context.Entry(entry).Property(primaryKey).IsModified = false;
+                }
+
+            await _context.SaveChangesAsync();
+            }
+        }
+        public virtual async Task DeleteAsync(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

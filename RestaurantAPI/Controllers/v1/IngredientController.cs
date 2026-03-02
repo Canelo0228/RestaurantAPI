@@ -27,7 +27,7 @@ namespace RestaurantAPI.Controllers.v1
                     return BadRequest();
                 }
 
-                await _ingredientService.Add(saveDto);
+                await _ingredientService.AddAsync(saveDto);
                 return NoContent();
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace RestaurantAPI.Controllers.v1
                     return BadRequest();
                 }
 
-                await _ingredientService.Update(saveDto, id);
+                await _ingredientService.UpdateAsync(saveDto, id);
                 return Ok(saveDto);
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var ingredients = await _ingredientService.GetAllViewDto();
+                var ingredients = await _ingredientService.GetAllAsync();
                 if (ingredients == null || ingredients.Count == 0)
                 {
                     return NotFound();
@@ -90,7 +90,7 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var ingredient = await _ingredientService.GetByIdViewDto(id);
+                var ingredient = await _ingredientService.GetByIdAsync(id);
                 if (ingredient == null)
                 {
                     return NotFound();
@@ -113,13 +113,13 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var ingredient = await _ingredientService.GetByIdViewDto(id);
+                var ingredient = await _ingredientService.GetByIdAsync(id);
                 if (ingredient == null)
                 {
                     return NotFound();
                 }
 
-                await _ingredientService.Delete(id);
+                await _ingredientService.DeleteAsync(id);
                 return NoContent();
             }
             catch (Exception ex)

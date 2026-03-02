@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "wigahZlohuY=",
+  "dgSpecHash": "+Sp6juGkO2I=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI.Core.Domain\\RestaurantAPI.Core.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI.Core.Domain\\RestaurantAPI.Core.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.23\\microsoft.windowsdesktop.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.23\\microsoft.netcore.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.23\\microsoft.aspnetcore.app.ref.8.0.23.nupkg.sha512"
+  ],
   "logs": []
 }

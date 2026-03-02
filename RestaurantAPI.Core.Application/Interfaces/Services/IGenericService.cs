@@ -1,14 +1,14 @@
 ﻿namespace RestaurantAPI.Core.Application.Interfaces.Services
 {
-    public interface IGenericService<SaveDto, ViewDto, Entity>
+    public interface IGenericService<SaveDto, ViewDto, T>
         where SaveDto : class
         where ViewDto : class
-        where Entity : class
+        where T : class
     {
-        Task Add(SaveDto saveEntity);
-        Task Update(SaveDto saveEntity, int id);
-        Task Delete(int id);
-        Task<ViewDto> GetByIdViewDto(int id);
-        Task<List<ViewDto>> GetAllViewDto();
+        Task<ViewDto> AddAsync(SaveDto saveDto);
+        Task UpdateAsync(SaveDto saveDto, int id);
+        Task DeleteAsync(int id);
+        Task<ViewDto> GetByIdAsync(int id);
+        Task<List<ViewDto>> GetAllAsync();
     }
 }

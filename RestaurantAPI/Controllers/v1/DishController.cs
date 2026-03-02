@@ -27,12 +27,11 @@ namespace RestaurantAPI.Controllers.v1
                     return BadRequest();
                 }
 
-                await _dishService.Add(saveDto);
+                await _dishService.AddAsync(saveDto);
                 return NoContent();
             }
             catch (Exception ex)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -50,12 +49,11 @@ namespace RestaurantAPI.Controllers.v1
                     return BadRequest();
                 }
 
-                await _dishService.Update(saveDto, id);
+                await _dishService.UpdateAsync(saveDto, id);
                 return NoContent();
             }
             catch (Exception ex)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -68,7 +66,7 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var dishes = await _dishService.GetAllWithIncludesDto();
+                var dishes = await _dishService.GetAllWithIncludesAsync();
                 if (dishes == null || dishes.Count == 0)
                 {
                     return NotFound();
@@ -90,7 +88,7 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var dish = await _dishService.GetByIdWithIncludesDto(id);
+                var dish = await _dishService.GetByIdWithIncludesAsync(id);
                 if (dish == null)
                 {
                     return NotFound();
@@ -100,7 +98,6 @@ namespace RestaurantAPI.Controllers.v1
             }
             catch (Exception ex)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -113,18 +110,17 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var dish = await _dishService.GetByIdViewDto(id);
+                var dish = await _dishService.GetByIdAsync(id);
                 if (dish == null)
                 {
                     return NotFound();
                 }
 
-                await _dishService.Delete(id);
+                await _dishService.DeleteAsync(id);
                 return NoContent();
             }
             catch (Exception ex)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

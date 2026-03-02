@@ -13,13 +13,32 @@ namespace RestaurantAPI.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public virtual async Task<Dish> GetByIdWithIncludesAsync(int id, List<string> properties)
+        public async Task<List<Dish>> GetAllWithIncludeAsync(List<string> properties)
+        {
+            var query = _context.Set<Dish>().AsQueryable();
+
+            foreach (string property in properties)
+            {
+                query = query.Include(property);
+            }
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<List<DishIngredient>> GetDishIngredientsAsync(int id)
+        {
+            var ingredients = await _context.DishIngredients.Where(a => a.DishId == id).ToListAsync();
+
+            return ingredients;
+        }
+
+        public virtual async Task<Dish> GetByIdWithIncludesAsync(int id, List<string> includes)
         {
             IQueryable<Dish> query = _context.Set<Dish>();
 
-            foreach (var property in properties)
+            foreach (var include in includes)
             {
-                query = query.Include(property);
+                query = query.Include(include);
             }
 
             return await query.FirstOrDefaultAsync(d => d.Id == id);

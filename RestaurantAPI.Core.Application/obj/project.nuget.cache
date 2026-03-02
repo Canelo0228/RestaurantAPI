@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "nm2fn0I1IeI=",
+  "dgSpecHash": "isOLvRh6bfE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI.Core.Application\\RestaurantAPI.Core.Application.csproj",
+  "projectFilePath": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI.Core.Application\\RestaurantAPI.Core.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Canelo\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
-    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.23\\microsoft.windowsdesktop.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.23\\microsoft.netcore.app.ref.8.0.23.nupkg.sha512",
+    "C:\\Users\\Canelo\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.23\\microsoft.aspnetcore.app.ref.8.0.23.nupkg.sha512"
   ],
   "logs": []
 }

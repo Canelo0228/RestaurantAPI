@@ -26,7 +26,7 @@ namespace RestaurantAPI.Controllers.v1
                 {
                     return BadRequest();
                 }
-                await _tableService.Add(saveDto);
+                await _tableService.AddAsync(saveDto);
                 return NoContent();
 
             }
@@ -49,7 +49,7 @@ namespace RestaurantAPI.Controllers.v1
                 {
                     return BadRequest();
                 }
-                await _tableService.Update(saveDto, id);
+                await _tableService.UpdateAsync(saveDto, id);
                 return Ok(saveDto);
 
             }
@@ -90,7 +90,7 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var table = await _tableService.GetByIdViewDto(id);
+                var table = await _tableService.GetByIdAsync(id);
                 if (table == null)
                 {
                     return NotFound();
@@ -108,6 +108,8 @@ namespace RestaurantAPI.Controllers.v1
 
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> ChangeStatus(int id, TableStatusDto status)
         {
@@ -116,9 +118,13 @@ namespace RestaurantAPI.Controllers.v1
                 var updatedTable = await _tableService.ChangeStatus(id, status);
                 if (updatedTable == null)
                 {
-                    return BadRequest();
+                    return NotFound();
                 }
                 return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
@@ -134,13 +140,13 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var table = await _tableService.GetByIdViewDto(id);
+                var table = await _tableService.GetByIdAsync(id);
                 if (table == null)
                 {
                     return NotFound();
                 }
 
-                await _tableService.Delete(id);
+                await _tableService.DeleteAsync(id);
                 return NoContent();
 
             }

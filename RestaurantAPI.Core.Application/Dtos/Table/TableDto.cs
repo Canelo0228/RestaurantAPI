@@ -8,8 +8,8 @@ namespace RestaurantAPI.Core.Application.Dtos.Table
         public int Capability { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
-        
-        public List<OrderSummaryDto> Orders { get; set; }
+
+        public List<OrderSummaryDto> Orders { get; set; } = new();
     }
 
 }

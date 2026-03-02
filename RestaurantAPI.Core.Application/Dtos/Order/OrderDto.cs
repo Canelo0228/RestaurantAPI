@@ -1,6 +1,5 @@
 ﻿using RestaurantAPI.Core.Application.Dtos.Dish;
 using RestaurantAPI.Core.Application.Dtos.Table;
-using RestaurantAPI.Core.Application.Enums;
 
 namespace RestaurantAPI.Core.Application.Dtos.Order
 {

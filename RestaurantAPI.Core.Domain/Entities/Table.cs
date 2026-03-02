@@ -6,7 +6,9 @@ namespace RestaurantAPI.Core.Domain.Entities
     {
         public int Capability { get; set; }
         public string Description { get; set; }
-        public string Status { get; set; } = "Available";
+        public int StatusId { get; set; }
+
+        public TableStatus TableStatus { get; set; }
         public ICollection<Order> Orders { get; set; }
     }
 }

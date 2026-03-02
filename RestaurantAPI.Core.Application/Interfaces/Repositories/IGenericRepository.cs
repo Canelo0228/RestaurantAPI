@@ -2,14 +2,14 @@
 
 namespace RestaurantAPI.Core.Application.Interfaces.Repositories
 {
-    public interface IGenericRepository<Entity> where Entity : class
+    public interface IGenericRepository<T> where T : class
     {
-        Task AddAsync(Entity entity);
-        Task UpdateAsync(Entity entity, int id);
-        Task DeleteAsync(Entity entity);
-        Task<Entity> GetByIdAsync(int id);
-        Task<List<Entity>> GetAllAsync();
-        Task<List<Entity>> GetAllAsync(Expression<Func<Entity, bool>> filter);
-        Task<List<Entity>> GetAllWithIncludesAsync(List<string> properties);
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity, int id);
+        Task DeleteAsync(T entity);
+        Task<T> GetByIdAsync(int id);
+        Task<List<T>> GetAllAsync();
+        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter);
+        Task<List<T>> GetAllWithIncludesAsync(List<Expression<Func<T, object>>> includeProperties);
     }
 }

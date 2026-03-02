@@ -5,9 +5,10 @@ namespace RestaurantAPI.Core.Domain.Entities
     public class Order : AuditableBaseEntity
     {
         public int TableId { get; set; }
+        public int OrderStatusId { get; set; }
+        public double SubTotal { get; set; }
         public Table Table { get; set; }
-        public ICollection<Dish> Dishes { get; set; }
-        public decimal SubTotal { get; set; }
-        public string Status { get; set; } = "InProcess";
+        public ICollection<DishOrder> DishOrders { get; set; }
+        public OrderStatus OrderStatus { get; set; }
     }
 }
