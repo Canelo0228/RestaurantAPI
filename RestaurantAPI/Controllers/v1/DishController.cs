@@ -24,7 +24,7 @@ namespace RestaurantAPI.Controllers.v1
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
 
                 await _dishService.AddAsync(saveDto);
@@ -39,6 +39,7 @@ namespace RestaurantAPI.Controllers.v1
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveDishDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(SaveDishDto saveDto, int id)
         {
@@ -46,11 +47,15 @@ namespace RestaurantAPI.Controllers.v1
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
 
                 await _dishService.UpdateAsync(saveDto, id);
-                return NoContent();
+                return Ok(saveDto);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Dish with ID: {id} could not be found.");
             }
             catch (Exception ex)
             {
@@ -60,18 +65,12 @@ namespace RestaurantAPI.Controllers.v1
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<DishDto>))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> List()
         {
             try
             {
                 var dishes = await _dishService.GetAllWithIncludesAsync();
-                if (dishes == null || dishes.Count == 0)
-                {
-                    return NotFound();
-                }
-
                 return Ok(dishes);
             }
             catch (Exception ex)

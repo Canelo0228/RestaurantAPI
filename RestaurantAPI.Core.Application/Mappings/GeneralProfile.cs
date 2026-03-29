@@ -66,6 +66,16 @@ namespace RestaurantAPI.Core.Application.Mappings
                 .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
                 .ForMember(dest => dest.LastModified, opt => opt.Ignore())
                 .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
+            CreateMap<Table, TableSummaryDto>()
+                .ForMember(dest => dest.Status,
+                           opt => opt.MapFrom(src => src.TableStatus.Status))
+                .ForMember(dest => dest.Id,
+                           opt => opt.MapFrom(src => src.Id))
+                .ReverseMap()
+                .ForMember(dest => dest.Created, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModified, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
             CreateMap<Table, SaveTableDto>()
                 .ReverseMap()
                 .ForMember(dest => dest.StatusId, opt => opt.Ignore())
@@ -95,9 +105,26 @@ namespace RestaurantAPI.Core.Application.Mappings
                 .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
                 .ForMember(dest => dest.LastModified, opt => opt.Ignore())
                 .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
+            CreateMap<Order, OrderSummaryDto>()
+                .ForMember(dest => dest.Status,
+                           opt => opt.MapFrom(src => src.OrderStatus.Status))
+                .ReverseMap()
+                .ForMember(dest => dest.OrderStatus, opt => opt.Ignore())
+                .ForMember(dest => dest.DishOrders, opt => opt.Ignore());
             CreateMap<Order, SaveOrderDto>()
                 .ForMember(dest => dest.DishIds, opt => opt.Ignore())
                 .ReverseMap()
+                .ForMember(dest => dest.DishOrders, opt => opt.Ignore())
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.DishOrders, opt => opt.Ignore())
+                .ForMember(dest => dest.Created, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModified, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
+            CreateMap<Order, UpdateOrderDto>()
+                .ForMember(dest => dest.DishIds, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(dest => dest.TableId, opt => opt.Ignore())
                 .ForMember(dest => dest.DishOrders, opt => opt.Ignore())
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.DishOrders, opt => opt.Ignore())
