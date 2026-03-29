@@ -24,7 +24,7 @@ namespace RestaurantAPI.Controllers.v1
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
 
                 await _ingredientService.AddAsync(saveDto);
@@ -40,6 +40,7 @@ namespace RestaurantAPI.Controllers.v1
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveIngredientDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(SaveIngredientDto saveDto, int id)
         {
@@ -47,33 +48,30 @@ namespace RestaurantAPI.Controllers.v1
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
 
                 await _ingredientService.UpdateAsync(saveDto, id);
                 return Ok(saveDto);
             }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Ingredient with ID: {id} could not be found.");
+            }
             catch (Exception ex)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<IngredientDto>))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> List()
         {
             try
             {
                 var ingredients = await _ingredientService.GetAllAsync();
-                if (ingredients == null || ingredients.Count == 0)
-                {
-                    return NotFound();
-                }
-
                 return Ok(ingredients);
             }
             catch (Exception ex)

@@ -24,7 +24,7 @@ namespace RestaurantAPI.Controllers.v1
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
                 await _tableService.AddAsync(saveDto);
                 return NoContent();
@@ -40,6 +40,7 @@ namespace RestaurantAPI.Controllers.v1
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTableDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(SaveTableDto saveDto, int id)
         {
@@ -47,11 +48,15 @@ namespace RestaurantAPI.Controllers.v1
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
                 await _tableService.UpdateAsync(saveDto, id);
                 return Ok(saveDto);
 
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound($"Table with ID: {id} could not be found.");
             }
             catch (Exception ex)
             {
@@ -62,18 +67,12 @@ namespace RestaurantAPI.Controllers.v1
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TableDto>))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> List()
         {
             try
             {
                 var tables = await _tableService.GetAllWithIncludesDto();
-                if (tables == null || tables.Count == 0)
-                {
-                    return NotFound();
-                }
-
                 return Ok(tables);
             }
             catch (Exception ex)
@@ -90,7 +89,7 @@ namespace RestaurantAPI.Controllers.v1
         {
             try
             {
-                var table = await _tableService.GetByIdAsync(id);
+                var table = await _tableService.GetByIdWithIncludesAsync(id);
                 if (table == null)
                 {
                     return NotFound();
@@ -103,8 +102,6 @@ namespace RestaurantAPI.Controllers.v1
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-
-        // GetTableOrders Method ...
 
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

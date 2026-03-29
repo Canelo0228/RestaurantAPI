@@ -531,3 +531,4 @@ C:\Users\Canelo\source\repos\RestaurantAPI\RestaurantAPI\obj\Debug\net8.0\refint
 C:\Users\Canelo\source\repos\RestaurantAPI\RestaurantAPI\obj\Debug\net8.0\RestaurantAPI.pdb
 C:\Users\Canelo\source\repos\RestaurantAPI\RestaurantAPI\obj\Debug\net8.0\RestaurantAPI.genruntimeconfig.cache
 C:\Users\Canelo\source\repos\RestaurantAPI\RestaurantAPI\obj\Debug\net8.0\ref\RestaurantAPI.dll
+C:\Users\Canelo\source\repos\RestaurantAPI\RestaurantAPI\obj\Debug\net8.0\RestaurantAPI.MvcApplicationPartsAssemblyInfo.cs

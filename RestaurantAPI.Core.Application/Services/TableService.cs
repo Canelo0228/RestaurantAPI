@@ -3,7 +3,6 @@ using RestaurantAPI.Core.Application.Dtos.Table;
 using RestaurantAPI.Core.Application.Interfaces.Repositories;
 using RestaurantAPI.Core.Application.Interfaces.Services;
 using RestaurantAPI.Core.Domain.Entities;
-using System.Linq.Expressions;
 
 namespace RestaurantAPI.Core.Application.Services
 {
@@ -28,10 +27,10 @@ namespace RestaurantAPI.Core.Application.Services
 
         public async Task<List<TableDto>> GetAllWithIncludesDto()
         {
-            var tables = await _repository.GetAllWithIncludesAsync(new List<Expression<Func<Table, object>>>
+            var tables = await _repository.GetAllWithIncludesAsync(new List<string>
             {
-                t => t.Orders,
-                t => t.TableStatus
+                "TableStatus",
+                "Orders.OrderStatus"
             });
 
             return _mapper.Map<List<TableDto>>(tables);
@@ -52,5 +51,19 @@ namespace RestaurantAPI.Core.Application.Services
 
             return _mapper.Map<TableDto>(tableEntity);
         }
+        public async Task<TableDto> GetByIdWithIncludesAsync(int id)
+        {
+            var includes = new List<string>
+            {
+                "TableStatus",
+                "Orders.OrderStatus"
+            };
+            var table = await _repository.GetByIdWithIncludesAsync(id, includes);
+
+            if (table == null) return null;
+
+            return _mapper.Map<TableDto>(table);
+        }
+
     }
 }

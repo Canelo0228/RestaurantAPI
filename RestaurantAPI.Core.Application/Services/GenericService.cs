@@ -29,7 +29,7 @@ namespace RestaurantAPI.Core.Application.Services
         {
             var entity = await _repository.GetByIdAsync(id);
 
-            if (entity == null) return;
+            if (entity == null) throw new KeyNotFoundException();
 
             _mapper.Map(dto, entity);
 

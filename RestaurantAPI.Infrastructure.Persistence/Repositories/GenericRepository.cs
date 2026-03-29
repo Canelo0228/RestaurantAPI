@@ -26,7 +26,7 @@ namespace RestaurantAPI.Infrastructure.Persistence.Repositories
         {
             if (filter != null)
             {
-                return await _context.Set<T>().Where(filter).ToListAsync();
+                return await _context.Set<T>().AsNoTracking().Where(filter).ToListAsync();
             }
             else
             {
@@ -35,7 +35,19 @@ namespace RestaurantAPI.Infrastructure.Persistence.Repositories
         }
         public virtual async Task<List<T>> GetAllWithIncludesAsync(List<Expression<Func<T, object>>> includeProperties)
         {
-            IQueryable<T> query = _context.Set<T>().AsQueryable();
+            IQueryable<T> query = _context.Set<T>().AsNoTracking().AsQueryable();
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return await query.ToListAsync();
+        }
+
+        public virtual async Task<List<T>> GetAllWithIncludesAsync(List<string> includeProperties)
+        {
+            IQueryable<T> query = _context.Set<T>().AsNoTracking().AsQueryable();
 
             foreach (var includeProperty in includeProperties)
             {

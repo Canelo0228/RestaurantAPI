@@ -7,5 +7,6 @@ namespace RestaurantAPI.Core.Application.Interfaces.Services
     {
         Task<List<TableDto>> GetAllWithIncludesDto();
         Task<TableDto> ChangeStatus(int id, TableStatusDto status);
+        Task<TableDto> GetByIdWithIncludesAsync(int id);
     }
 }

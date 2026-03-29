@@ -11,5 +11,6 @@ namespace RestaurantAPI.Core.Application.Interfaces.Repositories
         Task<List<T>> GetAllAsync();
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter);
         Task<List<T>> GetAllWithIncludesAsync(List<Expression<Func<T, object>>> includeProperties);
+        Task<List<T>> GetAllWithIncludesAsync(List<string> includeProperties);
     }
 }

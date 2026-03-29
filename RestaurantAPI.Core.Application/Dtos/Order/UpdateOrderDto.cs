@@ -1,8 +1,7 @@
 ﻿namespace RestaurantAPI.Core.Application.Dtos.Order
 {
-    public class SaveOrderDto
+    public class UpdateOrderDto
     {
-        public int TableId { get; set; }
         public List<int> DishIds { get; set; }
     }
 }

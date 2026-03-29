@@ -15,7 +15,7 @@ namespace RestaurantAPI.Infrastructure.Persistence.Repositories
 
         public async Task<List<Dish>> GetAllWithIncludeAsync(List<string> properties)
         {
-            var query = _context.Set<Dish>().AsQueryable();
+            var query = _context.Set<Dish>().AsNoTracking().AsQueryable();
 
             foreach (string property in properties)
             {
@@ -34,7 +34,7 @@ namespace RestaurantAPI.Infrastructure.Persistence.Repositories
 
         public virtual async Task<Dish> GetByIdWithIncludesAsync(int id, List<string> includes)
         {
-            IQueryable<Dish> query = _context.Set<Dish>();
+            IQueryable<Dish> query = _context.Set<Dish>().AsNoTracking();
 
             foreach (var include in includes)
             {
