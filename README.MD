@@ -60,8 +60,7 @@ El desarrollo se rigió bajo los principios **SOLID** para asegurar la calidad d
 4.  **Ejecución:**
     Presiona `F5` en Visual Studio. La documentación interactiva se abrirá en `/swagger`.
 
-## 🛠️ Mejoras Futuras (Roadmap)
-* [ ] Implementación de Autenticación y Autorización con **JWT**.
+## 🛠️ Mejoras Futuras
 * [ ] Integración de Frontend con **Angular**.
 * [ ] Sistema de notificaciones en tiempo real con **SignalR** para cambios de estado de mesa.
 * [ ] Reportes de ventas exportables a Excel/PDF.
