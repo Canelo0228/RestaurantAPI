@@ -3,6 +3,7 @@ using RestaurantAPI.Core.Application.Dtos.Dish;
 using RestaurantAPI.Core.Application.Dtos.Ingredient;
 using RestaurantAPI.Core.Application.Dtos.Order;
 using RestaurantAPI.Core.Application.Dtos.Table;
+using RestaurantAPI.Core.Application.Dtos.User;
 using RestaurantAPI.Core.Domain.Entities;
 
 namespace RestaurantAPI.Core.Application.Mappings
@@ -11,6 +12,16 @@ namespace RestaurantAPI.Core.Application.Mappings
     {
         public GeneralProfile()
         {
+            #region User
+            CreateMap<User, UserDto>()
+                .ReverseMap()
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
+                .ForMember(dest => dest.Created, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModified, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore()); ;
+            #endregion
+
             #region Dish
             CreateMap<Dish, DishDto>()
                 .ForMember(dest => dest.Category,

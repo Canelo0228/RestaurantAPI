@@ -26,6 +26,7 @@ namespace RestaurantAPI.Infrastructure.Persistence
             services.AddScoped<IDishRepository, DishRepository>();
             services.AddScoped<ITableRepository, TableRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             #endregion
         }
     }

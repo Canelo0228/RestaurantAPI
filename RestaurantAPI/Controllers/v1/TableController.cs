@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestaurantAPI.Core.Application.Dtos.Table;
 using RestaurantAPI.Core.Application.Interfaces.Services;
 
 namespace RestaurantAPI.Controllers.v1
 {
+    [Authorize]
     [ApiVersion("1.0")]
     public class TableController : BaseApiController
     {
@@ -14,6 +16,7 @@ namespace RestaurantAPI.Controllers.v1
             _tableService = tableService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -37,6 +40,7 @@ namespace RestaurantAPI.Controllers.v1
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTableDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -129,6 +133,7 @@ namespace RestaurantAPI.Controllers.v1
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

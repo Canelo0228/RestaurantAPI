@@ -16,6 +16,7 @@ namespace RestaurantAPI.Core.Application
             services.AddScoped<IDishService, DishService>();
             services.AddScoped<ITableService, TableService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IUserService, UserService>();
             #endregion
         }
     }

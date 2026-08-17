@@ -930,5 +930,42 @@
         "StatusCode": 500
       }
     ]
+  },
+  {
+    "ContainingType": "RestaurantAPI.Controllers.v1.UserController",
+    "Method": "Login",
+    "RelativePath": "api/v{version}/User/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "RestaurantAPI.Core.Application.Dtos.User.LoginRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "version",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RestaurantAPI.Controllers.v1.UserController",
+    "Method": "TestAuth",
+    "RelativePath": "api/v{version}/User/test-auth",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "version",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
