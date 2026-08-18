@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestaurantAPI.Core.Application.Dtos.Order;
 using RestaurantAPI.Core.Application.Interfaces.Services;
 
 namespace RestaurantAPI.Controllers.v1
 {
+    [Authorize(Roles = "Waiter")]
     [ApiVersion("1.0")]
     public class OrderController : BaseApiController
     {

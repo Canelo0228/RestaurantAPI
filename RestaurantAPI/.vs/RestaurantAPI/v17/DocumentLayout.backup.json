@@ -3,11 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4BC7653-EC7D-473F-9967-65555F4B263E}|RestaurantAPI.csproj|c:\\users\\canelo\\source\\repos\\restaurantapi\\restaurantapi\\controllers\\v1\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4BC7653-EC7D-473F-9967-65555F4B263E}|RestaurantAPI.csproj|solutionrelative:controllers\\v1\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4BC7653-EC7D-473F-9967-65555F4B263E}|RestaurantAPI.csproj|c:\\users\\canelo\\source\\repos\\restaurantapi\\restaurantapi\\controllers\\v1\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BC7653-EC7D-473F-9967-65555F4B263E}|RestaurantAPI.csproj|solutionrelative:controllers\\v1\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C14F308B-E78C-45E9-9FFC-765E50A22B74}|..\\RestaurantAPI.Core.Application\\RestaurantAPI.Core.Application.csproj|c:\\users\\canelo\\source\\repos\\restaurantapi\\restaurantapi.core.application\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4BC7653-EC7D-473F-9967-65555F4B263E}|RestaurantAPI.csproj|c:\\users\\canelo\\source\\repos\\restaurantapi\\restaurantapi\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4BC7653-EC7D-473F-9967-65555F4B263E}|RestaurantAPI.csproj|solutionrelative:extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,10 +20,6 @@
           "DockedWidth": 151,
           "SelectedChildIndex": 9,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -56,29 +53,33 @@
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI\\Controllers\\v1\\OrderController.cs",
-              "RelativeDocumentMoniker": "Controllers\\v1\\OrderController.cs",
-              "ToolTip": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI\\Controllers\\v1\\OrderController.cs",
-              "RelativeToolTip": "Controllers\\v1\\OrderController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH4AAAARAAAAAAAAAA==",
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI\\Controllers\\v1\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\v1\\UserController.cs",
+              "ToolTip": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI\\Controllers\\v1\\UserController.cs",
+              "RelativeToolTip": "Controllers\\v1\\UserController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAADwvxsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T23:19:56.241Z",
+              "WhenOpened": "2026-08-17T02:34:33.412Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "OrderService.cs",
-              "DocumentMoniker": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI.Core.Application\\Services\\OrderService.cs",
-              "RelativeDocumentMoniker": "..\\RestaurantAPI.Core.Application\\Services\\OrderService.cs",
-              "ToolTip": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI.Core.Application\\Services\\OrderService.cs",
-              "RelativeToolTip": "..\\RestaurantAPI.Core.Application\\Services\\OrderService.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAkwEkAAAAeAAAAAAAAAA==",
+              "Title": "ServiceExtension.cs",
+              "DocumentMoniker": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI\\Extensions\\ServiceExtension.cs",
+              "RelativeDocumentMoniker": "Extensions\\ServiceExtension.cs",
+              "ToolTip": "C:\\Users\\Canelo\\source\\repos\\RestaurantAPI\\RestaurantAPI\\Extensions\\ServiceExtension.cs",
+              "RelativeToolTip": "Extensions\\ServiceExtension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T23:14:26.911Z",
+              "WhenOpened": "2026-08-17T02:25:28.615Z",
               "EditorCaption": ""
             }
           ]

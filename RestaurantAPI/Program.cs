@@ -1,6 +1,7 @@
-using RestaurantAPI.Infrastructure.Persistence;
+using RestaurantAPI;
 using RestaurantAPI.Core.Application;
 using RestaurantAPI.Extensions;
+using RestaurantAPI.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
 builder.Services.AddSwaggerExtension();
 builder.Services.AddApiVersioningExtension();
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -30,6 +32,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseSwaggerExtension();
 app.UseHealthChecks("/health");

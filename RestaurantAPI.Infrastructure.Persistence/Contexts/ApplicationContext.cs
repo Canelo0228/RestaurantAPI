@@ -38,6 +38,7 @@ namespace RestaurantAPI.Infrastructure.Persistence.Contexts
         public DbSet<OrderStatus> OrdersStatus { get; set; }
         public DbSet<Table> Tables {  get; set; }
         public DbSet<TableStatus> TablesStatus { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,6 +52,7 @@ namespace RestaurantAPI.Infrastructure.Persistence.Contexts
             modelBuilder.Entity<OrderStatus>().HasKey(a => a.Id);
             modelBuilder.Entity<Table>().HasKey(a => a.Id);
             modelBuilder.Entity<TableStatus>().HasKey(a => a.Id);
+            modelBuilder.Entity<User>().HasKey(a => a.Id);
             #endregion
 
             #region relationships
