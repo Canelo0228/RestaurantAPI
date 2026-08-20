@@ -52,6 +52,7 @@ namespace RestaurantAPI
 
             #region repositories
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserService, UserService>();
             #endregion
         }
     }

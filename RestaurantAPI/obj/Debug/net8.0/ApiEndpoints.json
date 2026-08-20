@@ -950,22 +950,56 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "RestaurantAPI.Core.Application.Dtos.User.LoginResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
   },
   {
     "ContainingType": "RestaurantAPI.Controllers.v1.UserController",
-    "Method": "TestAuth",
-    "RelativePath": "api/v{version}/User/test-auth",
-    "HttpMethod": "GET",
+    "Method": "RegisterWaiter",
+    "RelativePath": "api/v{version}/User/register-waiter",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "request",
+        "Type": "RestaurantAPI.Core.Application.Dtos.User.RegisterRequest",
+        "IsRequired": true
+      },
       {
         "Name": "version",
         "Type": "",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "RestaurantAPI.Core.Application.Dtos.User.RegisterResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

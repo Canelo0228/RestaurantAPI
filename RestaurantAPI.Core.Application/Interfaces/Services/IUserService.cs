@@ -5,5 +5,6 @@ namespace RestaurantAPI.Core.Application.Interfaces.Services
     public interface IUserService
     {
         Task<UserDto> GetById(int id);
+        Task<RegisterResponse> AddAsync(RegisterRequest request);
     }
 }

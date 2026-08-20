@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RestaurantAPI.Core.Application.Dtos.User;
+using RestaurantAPI.Core.Application.Helpers;
 using RestaurantAPI.Core.Application.Interfaces.Repositories;
 using RestaurantAPI.Core.Application.Interfaces.Services;
 using RestaurantAPI.Core.Domain.Entities;
@@ -28,7 +29,9 @@ namespace RestaurantAPI.Core.Application.Services
             if (user is null)
                 return null;
 
-            if (request.Password != user.Password)
+            var validPassword = PasswordHasher.VerifyPassword(request.Password, user.Password);
+
+            if (!validPassword) 
                 return null;
 
             return new LoginResponse
