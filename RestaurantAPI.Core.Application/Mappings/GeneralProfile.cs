@@ -19,7 +19,22 @@ namespace RestaurantAPI.Core.Application.Mappings
                 .ForMember(dest => dest.Created, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
                 .ForMember(dest => dest.LastModified, opt => opt.Ignore())
-                .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore()); ;
+                .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
+
+            CreateMap<User, RegisterRequest>()
+                .ReverseMap()
+                .ForMember(dest => dest.Created, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModified, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
+           
+            CreateMap<User, RegisterResponse>()
+                .ReverseMap()
+                .ForMember(dest => dest.Created, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModified, opt => opt.Ignore())
+                .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
+
             #endregion
 
             #region Dish
@@ -100,25 +115,15 @@ namespace RestaurantAPI.Core.Application.Mappings
 
             #region Order
             CreateMap<Order, OrderDto>()
-                .ForMember(dest => dest.Status,
-                           opt => opt.MapFrom
-                           (
-                               src => src.OrderStatus.Status
-                           ))
-                .ForMember(dest => dest.Dishes,
-                           opt => opt.MapFrom
-                           (
-                               src => src.DishOrders
-                               .Select(d => d.Dish)
-                           ))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.OrderStatus.Status))
+                .ForMember(dest => dest.Dishes, opt => opt.MapFrom(src => src.DishOrders.Select(d => d.Dish)))
                 .ReverseMap()
                 .ForMember(dest => dest.Created, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
                 .ForMember(dest => dest.LastModified, opt => opt.Ignore())
                 .ForMember(dest => dest.LastModifiedBy, opt => opt.Ignore());
             CreateMap<Order, OrderSummaryDto>()
-                .ForMember(dest => dest.Status,
-                           opt => opt.MapFrom(src => src.OrderStatus.Status))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.OrderStatus.Status))
                 .ReverseMap()
                 .ForMember(dest => dest.OrderStatus, opt => opt.Ignore())
                 .ForMember(dest => dest.DishOrders, opt => opt.Ignore());
